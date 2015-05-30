@@ -81,7 +81,7 @@ class Beepo {
 		var processOutput = _runCommand("ps", ["aux"]);
 		var filteredOutput = "";
 		for (line in processOutput.split("\n")) {
-			if ( ! line.contains("beepo")) { // TODO check for beepo pid instead?
+			if ( ! line.contains("beepo")) {
 				filteredOutput += line + "\n";
 			}
 		}
