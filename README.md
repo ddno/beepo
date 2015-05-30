@@ -28,7 +28,7 @@ This will make Beepo watch for a process containing the text "Build.xml" to disa
 * haxe NekoCompile.hxml
 * neko Beepo.n
 
-## How to abort beepo
+## How to abort Beepo
 
 Just use CTRL + C
 
