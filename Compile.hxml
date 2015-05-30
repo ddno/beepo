@@ -1,0 +1,4 @@
+-cp src
+-main Beepo
+-cpp bin
+-cmd mv ./bin/Beepo ./bin/beepo
