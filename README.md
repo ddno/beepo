@@ -10,12 +10,12 @@ If you have some long running process and wants to be notified by sound when it'
 
 ## How to use it in a simple way?
 
-Like this: make;make install;beepo
+Like this: make;make install;beepo  
 This way Beepo will start beeping once the previous commands are finished.
 
 ## How to use it in an advanced way?
 
-Like this: beepo -np Build.xml -say "Done" -bt 5 -t 0.5
+Like this: beepo -np Build.xml -say "Done" -bt 5 -t 0.5  
 This will make Beepo watch for a process containing the text "Build.xml" to disappear from ps aux, and once it's gone Beepo will use the say command to say "Done" 5 times, waiting 0.5 seconds between each time.
 
 ## How to compile and install it?
