@@ -1,4 +1,8 @@
 import sys.io.Process;
+#if cpp
+import hxcpp.StaticStd;
+import hxcpp.StaticRegexp;
+#end
 
 using StringExtender;
 
@@ -8,8 +12,8 @@ class Beepo {
 	private static var sayMessage = "";
 	private static var verboseLevel = 0;
 	private static var beepTimes = 0;
-	private static var processExists = "";
-	private static var processDontExists = "";
+	private static var existingProcess = "";
+	private static var nonExistingProcess = "";
 
 	public static function main() {
 		var args = Sys.args();
@@ -27,22 +31,22 @@ class Beepo {
 				case "-nb":
 					doBeep = false;
 				case "-say":
-					_output("Will use say command", 1);
 					sayMessage = args.shift();
 					doBeep = false;
+					_output("Will use say command", 1);
 				case "-p":
-					processExists = args.shift();
-					_output("Will check if process: " + processExists + " exists", 1);
+					existingProcess = args.shift();
+					_output("Will check if process: " + existingProcess + " exists", 1);
 				case "-np":
-					processDontExists = args.shift();
-					_output("Will check if process " + processDontExists + " no longer exists", 1);
+					nonExistingProcess = args.shift();
+					_output("Will check if process " + nonExistingProcess + " no longer exists", 1);
 				case "-bt":
 					beepTimes = Std.parseInt(args.shift());
 				case "help":
 					Instructions.print();
 					Sys.exit(0);
 				case "-version", "--version":
-					Sys.println("beepo version 1.0. Created by Daniel Nordström 2015");
+					Sys.println("beepo version 1.1. Created by Daniel Nordström 2015");
 					Sys.exit(0);
 				default:
 					Sys.println("Unsupported argument: " + arg);
@@ -56,10 +60,10 @@ class Beepo {
 		while (true) {
 			Sys.sleep(timeout);
 
-			if (processDontExists != "" && _doProcessExist(processDontExists)) {
+			if (nonExistingProcess != "" && _isExistingProcess(nonExistingProcess)) {
 				continue;
 			}
-			if (processExists != "" && ! _doProcessExist(processExists)) {
+			if (existingProcess != "" && ! _isExistingProcess(existingProcess)) {
 				continue;
 			}
 
@@ -77,7 +81,7 @@ class Beepo {
 			}
 		}
 	}
-	private static function _doProcessExist(processName:String) {
+	private static function _isExistingProcess(processName:String):Bool {
 		var processOutput = _runCommand("ps", ["aux"]);
 		var filteredOutput = "";
 		for (line in processOutput.split("\n")) {
@@ -102,6 +106,7 @@ class Beepo {
 		for (arg in args) {
 			if (arg == "-v") {
 				verboseLevel = Std.parseInt(args[argCount + 1]);
+				break;
 			}
 			argCount++;
 		}

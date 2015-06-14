@@ -11,7 +11,7 @@ If you have some long running process and wants to be notified by sound when it'
 ## How to use it in a simple way?
 
 Like this: make;make install;beepo  
-This way Beepo will start beeping once the previous commands are finished.
+This way Beepo will start beeping when the previous commands are finished.
 
 ## How to use it in an advanced way?
 
@@ -28,7 +28,7 @@ This will make Beepo watch for a process containing the text "Build.xml" to disa
 * haxe NekoCompile.hxml
 * neko Beepo.n
 
-## How to abort Beepo
+## How to turn off Beepo
 
 Just use CTRL + C
 

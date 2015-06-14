@@ -1,4 +1,5 @@
 -cp src
 -main Beepo
 -cpp bin
+-lib hxcpp
 -cmd mv ./bin/Beepo ./bin/beepo
